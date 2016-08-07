@@ -19,6 +19,9 @@
 using FFmpegInterop;
 
 using System;
+using System.IO;
+using System.Net;
+using Windows.Foundation.Collections;
 using Windows.Media.Core;
 using Windows.Storage;
 using Windows.Storage.Pickers;
@@ -32,15 +35,26 @@ namespace MediaPlayerCS
     public sealed partial class MainPage : Page
     {
         private FFmpegInteropMSS FFmpegMSS;
-		private bool forceDecodeAudio = false;
-		private bool forceDecodeVideo = false;
+        private bool forceDecodeAudio = false;
+        private bool forceDecodeVideo = false;
 
         public MainPage()
         {
             this.InitializeComponent();
 
             // Show the TopAppBar on startup so user can start opening media
-	        this.TopAppBar.IsOpen = true;
+            this.TopAppBar.IsOpen = true;
+
+            Loaded += OnLoaded;
+        }
+
+        private void OnLoaded(object sender, RoutedEventArgs e)
+        {
+            //txtUrl.Text = "rtsp://ionutdanila:hbf5ukcy@192.168.0.102/img/media.sav";
+            //txtUrl.Text = "http://192.168.0.102/img/media.flv";
+            //txtUrl.Text = "http://192.168.0.102/img/sc_flvplayer.swf?vesion=v1.0.03";
+            txtUrl.Text = $"http://192.168.0.102/img/media-sc-ts-{DateTime.Now.ToFileTimeUtc()}.flv";
+            //txtUrl.Text = "rtsp://184.72.239.149/vod/mp4:BigBuckBunny_175k.mov";
         }
 
         private async void AppBarButton_Browse_Click(object sender, RoutedEventArgs e)
@@ -62,7 +76,7 @@ namespace MediaPlayerCS
 
                 try
                 {
-					// Instantiate FFmpeg object and pass the stream from opened file
+                    // Instantiate FFmpeg object and pass the stream from opened file
                     FFmpegMSS = FFmpegInteropMSS.CreateFFmpegInteropMSSFromStream(readStream, forceDecodeAudio, forceDecodeVideo);
                     MediaStreamSource mss = FFmpegMSS.GetMediaStreamSource();
 
@@ -82,15 +96,15 @@ namespace MediaPlayerCS
                 }
             }
 
-	        // Set the TopAppBar to non-sticky so it will hide automatically after first file open
-	        this.TopAppBar.IsSticky = false;
+            // Set the TopAppBar to non-sticky so it will hide automatically after first file open
+            this.TopAppBar.IsSticky = false;
             this.TopAppBar.IsOpen = false;
         }
 
         private void AppBarButton_Audio_Click(object sender, RoutedEventArgs e)
         {
             AppBarToggleButton button = sender as AppBarToggleButton;
-	        forceDecodeAudio = button.IsChecked.Value;
+            forceDecodeAudio = button.IsChecked.Value;
         }
 
         private void AppBarButton_Video_Click(object sender, RoutedEventArgs e)
@@ -101,8 +115,8 @@ namespace MediaPlayerCS
 
         private void MediaElement_MediaEnded(object sender, RoutedEventArgs e)
         {
-	        // Show the TopAppBar when media has finished playing
-	        this.TopAppBar.IsOpen = true;
+            // Show the TopAppBar when media has finished playing
+            this.TopAppBar.IsOpen = true;
         }
 
         private void MediaElement_MediaFailed(object sender, ExceptionRoutedEventArgs e)
@@ -115,6 +129,36 @@ namespace MediaPlayerCS
             // Display error message
             var errorDialog = new MessageDialog(message);
             var x = await errorDialog.ShowAsync();
+        }
+
+        private void OnUrlChanged(object sender, TextChangedEventArgs e)
+        {
+            string url = (sender as TextBox).Text;
+
+            if (string.IsNullOrEmpty(url))
+                return;
+
+            try
+            {
+                mediaElement.Stop();
+
+                FFmpegMSS = FFmpegInteropMSS.CreateFFmpegInteropMSSFromUri(url, forceDecodeAudio, forceDecodeVideo);
+                MediaStreamSource mss = FFmpegMSS.GetMediaStreamSource();
+
+                if (mss != null)
+                {
+                    // Pass MediaStreamSource to Media Element
+                    mediaElement.SetMediaStreamSource(mss);
+                }
+                else
+                {
+                    DisplayErrorMessage("Cannot open media");
+                }
+            }
+            catch (Exception ex)
+            {
+                DisplayErrorMessage(ex.Message);
+            }
         }
     }
 }

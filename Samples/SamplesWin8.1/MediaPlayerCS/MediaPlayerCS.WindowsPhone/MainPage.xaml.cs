@@ -41,6 +41,17 @@ namespace MediaPlayerCS
             this.InitializeComponent();
 
             this.NavigationCacheMode = NavigationCacheMode.Required;
+
+            Loaded += OnLoaded;
+        }
+
+        private void OnLoaded(object sender, RoutedEventArgs e)
+        {
+            //txtUrl.Text = "rtsp://ionutdanila:hbf5ukcy@192.168.0.102/img/media.sav";
+            //txtUrl.Text = "http://192.168.0.102/img/media.flv";
+            //txtUrl.Text = "http://192.168.0.102/img/sc_flvplayer.swf?vesion=v1.0.03";
+            txtUrl.Text = $"http://192.168.0.102/img/media-sc-ts-{DateTime.Now.ToFileTimeUtc()}.flv";
+            //txtUrl.Text = "rtsp://184.72.239.149/vod/mp4:BigBuckBunny_175k.mov";
         }
 
         // Handle the returned files from file picker
@@ -142,6 +153,36 @@ namespace MediaPlayerCS
             // Display error message
             var errorDialog = new MessageDialog(message);
             var x = await errorDialog.ShowAsync();
+        }
+
+        private void OnUrlChanged(object sender, TextChangedEventArgs e)
+        {
+            string url = (sender as TextBox).Text;
+
+            if (string.IsNullOrEmpty(url))
+                return;
+
+            try
+            {
+                mediaElement.Stop();
+
+                FFmpegMSS = FFmpegInteropMSS.CreateFFmpegInteropMSSFromUri(url, forceDecodeAudio, forceDecodeVideo);
+                MediaStreamSource mss = FFmpegMSS.GetMediaStreamSource();
+
+                if (mss != null)
+                {
+                    // Pass MediaStreamSource to Media Element
+                    mediaElement.SetMediaStreamSource(mss);
+                }
+                else
+                {
+                    DisplayErrorMessage("Cannot open media");
+                }
+            }
+            catch (Exception ex)
+            {
+                DisplayErrorMessage(ex.Message);
+            }
         }
     }
 }
