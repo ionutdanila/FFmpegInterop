@@ -21,6 +21,16 @@ if [ "$1" == "Win10" ]; then
         --target-os=win32 \
         --extra-cflags="-MD -DWINAPI_FAMILY=WINAPI_FAMILY_APP -D_WIN32_WINNT=0x0A00" \
         --extra-ldflags="-APPCONTAINER WindowsApp.lib" \
+		--disable-everything \
+		--disable-debug \
+		--enable-small \
+		--enable-network \
+		--enable-runtime-cpudetect \
+		--enable-decoder=mjpeg,mpeg4,mpegvideo,h264,flv,rawvideo,flashsv,flashsv2 \
+		--enable-decoder=nellymoser,adpcm_swf,aac,pcm_alaw,pcm_f32be,pcm_f32le,pcm_f64be,pcm_f64le,pcm_mulaw,pcm_s16be,pcm_s16le,pcm_s24be,pcm_s24le,pcm_s32be,pcm_s32le,pcm_s8,pcm_u16be,pcm_u16le,pcm_u24be,pcm_u24le,pcm_u32be,pcm_u32le,pcm_u8 \
+		--enable-parser=mpeg4video,mpegaudio,mpegvideo,h261,h264 \
+		--enable-demuxer=mpegvideo,h264,rtsp,flv,mjpeg,rawvideo,mpegts,rm,sdp,mpjpeg,h263 \
+		--enable-protocol=http,tcp,udp \
         --prefix=../../../Build/Windows10/x86
         make install
         popd
@@ -42,6 +52,16 @@ if [ "$1" == "Win10" ]; then
         --target-os=win32 \
         --extra-cflags="-MD -DWINAPI_FAMILY=WINAPI_FAMILY_APP -D_WIN32_WINNT=0x0A00" \
         --extra-ldflags="-APPCONTAINER WindowsApp.lib" \
+		--disable-everything \
+		--disable-debug \
+		--enable-small \
+		--enable-network \
+		--enable-runtime-cpudetect \
+		--enable-decoder=mjpeg,mpeg4,mpegvideo,h264,flv,rawvideo,flashsv,flashsv2 \
+		--enable-decoder=nellymoser,adpcm_swf,aac,pcm_alaw,pcm_f32be,pcm_f32le,pcm_f64be,pcm_f64le,pcm_mulaw,pcm_s16be,pcm_s16le,pcm_s24be,pcm_s24le,pcm_s32be,pcm_s32le,pcm_s8,pcm_u16be,pcm_u16le,pcm_u24be,pcm_u24le,pcm_u32be,pcm_u32le,pcm_u8 \
+		--enable-parser=mpeg4video,mpegaudio,mpegvideo,h261,h264 \
+		--enable-demuxer=mpegvideo,h264,rtsp,flv,mjpeg,rawvideo,mpegts,rm,sdp,mpjpeg,h263 \
+		--enable-protocol=http,tcp,udp \
         --prefix=../../../Build/Windows10/x64
         make install
         popd
@@ -66,6 +86,16 @@ if [ "$1" == "Win10" ]; then
         --target-os=win32 \
         --extra-cflags="-MD -DWINAPI_FAMILY=WINAPI_FAMILY_APP -D_WIN32_WINNT=0x0A00 -D__ARM_PCS_VFP" \
         --extra-ldflags="-APPCONTAINER WindowsApp.lib" \
+		--disable-everything \
+		--disable-debug \
+		--enable-small \
+		--enable-network \
+		--enable-runtime-cpudetect \
+		--enable-decoder=mjpeg,mpeg4,mpegvideo,h264,flv,rawvideo,flashsv,flashsv2 \
+		--enable-decoder=nellymoser,adpcm_swf,aac,pcm_alaw,pcm_f32be,pcm_f32le,pcm_f64be,pcm_f64le,pcm_mulaw,pcm_s16be,pcm_s16le,pcm_s24be,pcm_s24le,pcm_s32be,pcm_s32le,pcm_s8,pcm_u16be,pcm_u16le,pcm_u24be,pcm_u24le,pcm_u32be,pcm_u32le,pcm_u8 \
+		--enable-parser=mpeg4video,mpegaudio,mpegvideo,h261,h264 \
+		--enable-demuxer=mpegvideo,h264,rtsp,flv,mjpeg,rawvideo,mpegts,rm,sdp,mpjpeg,h263 \
+		--enable-protocol=http,tcp,udp \
         --prefix=../../../Build/Windows10/ARM
         make install
         popd
@@ -93,7 +123,7 @@ elif [ "$1" == "Win8.1" ]; then
         --extra-cflags="-MD -DWINAPI_FAMILY=WINAPI_FAMILY_PC_APP -D_WIN32_WINNT=0x0603" \
         --extra-ldflags="-APPCONTAINER" \
 		--disable-everything \
-		--enable-version3 \
+		--disable-debug \
 		--enable-small \
 		--enable-network \
 		--enable-runtime-cpudetect \
@@ -123,6 +153,16 @@ elif [ "$1" == "Win8.1" ]; then
         --target-os=win32 \
         --extra-cflags="-MD -DWINAPI_FAMILY=WINAPI_FAMILY_PC_APP -D_WIN32_WINNT=0x0603" \
         --extra-ldflags="-APPCONTAINER" \
+		--disable-everything \
+		--disable-debug \
+		--enable-small \
+		--enable-network \
+		--enable-runtime-cpudetect \
+		--enable-decoder=mjpeg,mpeg4,mpegvideo,h264,flv,rawvideo,flashsv,flashsv2 \
+		--enable-decoder=nellymoser,adpcm_swf,aac,pcm_alaw,pcm_f32be,pcm_f32le,pcm_f64be,pcm_f64le,pcm_mulaw,pcm_s16be,pcm_s16le,pcm_s24be,pcm_s24le,pcm_s32be,pcm_s32le,pcm_s8,pcm_u16be,pcm_u16le,pcm_u24be,pcm_u24le,pcm_u32be,pcm_u32le,pcm_u8 \
+		--enable-parser=mpeg4video,mpegaudio,mpegvideo,h261,h264 \
+		--enable-demuxer=mpegvideo,h264,rtsp,flv,mjpeg,rawvideo,mpegts,rm,sdp,mpjpeg,h263 \
+		--enable-protocol=http,tcp,udp \
         --prefix=../../../Build/Windows8.1/x64
         make install
         popd
@@ -147,6 +187,16 @@ elif [ "$1" == "Win8.1" ]; then
         --target-os=win32 \
         --extra-cflags="-MD -DWINAPI_FAMILY=WINAPI_FAMILY_PC_APP -D_WIN32_WINNT=0x0603 -D__ARM_PCS_VFP" \
         --extra-ldflags="-APPCONTAINER -MACHINE:ARM" \
+		--disable-everything \
+		--disable-debug \
+		--enable-small \
+		--enable-network \
+		--enable-runtime-cpudetect \
+		--enable-decoder=mjpeg,mpeg4,mpegvideo,h264,flv,rawvideo,flashsv,flashsv2 \
+		--enable-decoder=nellymoser,adpcm_swf,aac,pcm_alaw,pcm_f32be,pcm_f32le,pcm_f64be,pcm_f64le,pcm_mulaw,pcm_s16be,pcm_s16le,pcm_s24be,pcm_s24le,pcm_s32be,pcm_s32le,pcm_s8,pcm_u16be,pcm_u16le,pcm_u24be,pcm_u24le,pcm_u32be,pcm_u32le,pcm_u8 \
+		--enable-parser=mpeg4video,mpegaudio,mpegvideo,h261,h264 \
+		--enable-demuxer=mpegvideo,h264,rtsp,flv,mjpeg,rawvideo,mpegts,rm,sdp,mpjpeg,h263 \
+		--enable-protocol=http,tcp,udp \
         --prefix=../../../Build/Windows8.1/ARM
         make install
         popd
@@ -177,7 +227,7 @@ elif [ "$1" == "Phone8.1" ]; then
         --extra-cflags="-MD -DWINAPI_FAMILY=WINAPI_FAMILY_PHONE_APP -D_WIN32_WINNT=0x0603 -D__ARM_PCS_VFP" \
         --extra-ldflags="-APPCONTAINER -MACHINE:ARM -subsystem:console -opt:ref WindowsPhoneCore.lib RuntimeObject.lib PhoneAppModelHost.lib -NODEFAULTLIB:kernel32.lib -NODEFAULTLIB:ole32.lib" \
         --disable-everything \
-		--enable-version3 \
+		--disable-debug \
 		--enable-small \
 		--enable-network \
 		--enable-runtime-cpudetect \
@@ -207,6 +257,16 @@ elif [ "$1" == "Phone8.1" ]; then
         --target-os=win32 \
         --extra-cflags="-MD -DWINAPI_FAMILY=WINAPI_FAMILY_PHONE_APP -D_WIN32_WINNT=0x0603" \
         --extra-ldflags="-APPCONTAINER -subsystem:console -opt:ref WindowsPhoneCore.lib RuntimeObject.lib PhoneAppModelHost.lib -NODEFAULTLIB:kernel32.lib -NODEFAULTLIB:ole32.lib" \
+		--disable-everything \
+		--disable-debug \
+		--enable-small \
+		--enable-network \
+		--enable-runtime-cpudetect \
+		--enable-decoder=mjpeg,mpeg4,mpegvideo,h264,flv,rawvideo,flashsv,flashsv2 \
+		--enable-decoder=nellymoser,adpcm_swf,aac,pcm_alaw,pcm_f32be,pcm_f32le,pcm_f64be,pcm_f64le,pcm_mulaw,pcm_s16be,pcm_s16le,pcm_s24be,pcm_s24le,pcm_s32be,pcm_s32le,pcm_s8,pcm_u16be,pcm_u16le,pcm_u24be,pcm_u24le,pcm_u32be,pcm_u32le,pcm_u8 \
+		--enable-parser=mpeg4video,mpegaudio,mpegvideo,h261,h264 \
+		--enable-demuxer=mpegvideo,h264,rtsp,flv,mjpeg,rawvideo,mpegts,rm,sdp,mpjpeg,h263 \
+		--enable-protocol=http,tcp,udp \
         --prefix=../../../Build/WindowsPhone8.1/x86
         make install
         popd
