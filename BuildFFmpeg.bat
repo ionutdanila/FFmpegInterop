@@ -72,7 +72,7 @@ if defined MSYS2_BIN (
 echo:
 echo MSYS2 is needed. Set it up properly and provide the executable path in MSYS2_BIN environment variable. E.g.
 echo:
-echo     set MSYS2_BIN="C:\msys64\usr\bin\bash.exe"
+echo     set MSYS2_BIN="D:\Development\msys64\usr\bin\bash.exe"
 echo:
 echo See https://trac.ffmpeg.org/wiki/CompilationGuide/WinRT#PrerequisitesandFirstTimeSetupInstructions
 goto Cleanup
