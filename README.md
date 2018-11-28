@@ -37,7 +37,7 @@ Your `FFmpegInterop` folder should look as follows
 
 Now that you have the FFmpeg source code, you can follow the instructions on how to [build FFmpeg for WinRT](https://trac.ffmpeg.org/wiki/CompilationGuide/WinRT) apps. Follow the setup instruction carefuly to avoid build issues. After completing the setup as instructed, you can invoke `BuildFFmpeg.bat` script to build or do it manually using the instructions in the compilation guide.
 
-	BuildFFmpeg.bat win10                     - Build for Windows 10 ARM, x64, and x86
+	BuildFFmpeg.bat win10                     - Build for Windows 10 ARM, x64, x86 and ARM64
 	BuildFFmpeg.bat phone8.1 ARM              - Build for Windows Phone 8.1 ARM only
 	BuildFFmpeg.bat win8.1 x86 x64            - Build for Windows 8.1 x86 and x64 only
 	BuildFFmpeg.bat phone8.1 win10 ARM        - Build for Windows 10 and Windows Phone 8.1 ARM only
