@@ -6,6 +6,7 @@ if "%~1" == "" goto Usage
 
 :: Initialize build configuration
 set BUILD.ARM=N
+set BUILD.ARM64=N
 set BUILD.x86=N
 set BUILD.x64=N
 set BUILD.win10=N
@@ -23,6 +24,8 @@ for %%a in (%*) do (
         set BUILD.x86=Y
     ) else if /I "%%a"=="x64" (
         set BUILD.x64=Y
+	) else if /I "%%a"=="ARM64" (
+        set BUILD.ARM64=Y
     ) else if /I "%%a"=="win10" (
         set BUILD.win10=Y
     ) else if /I "%%a"=="win8.1" (
@@ -38,9 +41,12 @@ for %%a in (%*) do (
 if %BUILD.ARM%==N (
     if %BUILD.x86%==N (
         if %BUILD.x64%==N (
-            set BUILD.ARM=Y
-            set BUILD.x86=Y
-            set BUILD.x64=Y
+			if %BUILD.ARM64%==N (
+				set BUILD.ARM=Y
+				set BUILD.x86=Y
+				set BUILD.x64=Y
+				set BUILD.ARM64=Y
+			)
         )
     )
 )
@@ -117,7 +123,7 @@ set INCLUDE=%VSINSTALLDIR%VC\include;%VSINSTALLDIR%VC\atlmfc\include;%UniversalC
 endlocal
 
 :Win10ARM
-if %BUILD.ARM%==N goto Win8.1
+if %BUILD.ARM%==N goto Win10ARM64
 echo Building FFmpeg for Windows 10 apps ARM...
 echo:
 
@@ -128,6 +134,20 @@ set LIBPATH=%VSINSTALLDIR%VC\atlmfc\lib\ARM;%VSINSTALLDIR%VC\lib\ARM;
 set INCLUDE=%VSINSTALLDIR%VC\include;%VSINSTALLDIR%VC\atlmfc\include;%UniversalCRTSdkDir%Include\%UCRTVersion%\ucrt;%UniversalCRTSdkDir%Include\%UCRTVersion%\um;%UniversalCRTSdkDir%Include\%UCRTVersion%\shared;%UniversalCRTSdkDir%Include\%UCRTVersion%\winrt;C:\Program Files (x86)\Windows Kits\NETFXSDK\4.6\Include\um;
 
 %MSYS2_BIN% --login -x %~dp0FFmpegConfig.sh Win10 ARM
+endlocal
+
+:Win10ARM64
+if %BUILD.ARM64%==N goto Win8.1
+echo Building FFmpeg for Windows 10 apps ARM64...
+echo:
+
+setlocal
+call "%VSINSTALLDIR%VC\Auxiliary\Build\vcvarsall.bat" x86_arm64 store
+set LIB=%VSINSTALLDIR%VC\Tools\MSVC\14.16.27023\lib\arm64;%UniversalCRTSdkDir%lib\%UCRTVersion%\ucrt\arm64;%UniversalCRTSdkDir%lib\%UCRTVersion%\um\arm64;
+set LIBPATH=%VSINSTALLDIR%VC\Tools\MSVC\14.16.27023\lib\arm64;
+set INCLUDE=%VSINSTALLDIR%VC\Tools\MSVC\14.16.27023\include;%VSINSTALLDIR%VC\Tools\MSVC\14.16.27023\atlmfc\include;%UniversalCRTSdkDir%Include\%UCRTVersion%\ucrt;%UniversalCRTSdkDir%Include\%UCRTVersion%\um;%UniversalCRTSdkDir%Include\%UCRTVersion%\shared;%UniversalCRTSdkDir%Include\%UCRTVersion%\winrt;C:\Program Files (x86)\Windows Kits\NETFXSDK\4.6\Include\um;
+
+%MSYS2_BIN% --login -x %~dp0FFmpegConfig.sh Win10 ARM64
 endlocal
 
 :: Build and deploy Windows 8.1 library
@@ -236,7 +256,7 @@ echo [target platform] is: win10 ^| win8.1 ^| phone8.1 (at least one)
 echo [architecture]    is: x86 ^| x64 ^| ARM (optional)
 echo:
 echo For example:
-echo     %0 win10                     - Build for Windows 10 ARM, x64, and x86
+echo     %0 win10                     - Build for Windows 10 ARM, x64, x86 and ARM64
 echo     %0 phone8.1 ARM              - Build for Windows Phone 8.1 ARM only
 echo     %0 win8.1 x86 x64            - Build for Windows 8.1 x86 and x64 only
 echo     %0 phone8.1 win10 ARM        - Build for Windows 10 and Windows Phone 8.1 ARM only
