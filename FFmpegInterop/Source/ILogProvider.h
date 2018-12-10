@@ -1,6 +1,6 @@
 //*****************************************************************************
 //
-//	Copyright 2015 Microsoft Corporation
+//	Copyright 2017 Microsoft Corporation
 //
 //	Licensed under the Apache License, Version 2.0 (the "License");
 //	you may not use this file except in compliance with the License.
@@ -18,22 +18,26 @@
 
 #pragma once
 
-#include "MediaSampleProvider.h"
+using namespace Platform;
 
 namespace FFmpegInterop
 {
-
-	ref class FFmpegReader
+	// Level values from ffmpeg: libavutil/log.h
+	public enum class LogLevel
 	{
-	public:
-		virtual ~FFmpegReader();
-		int ReadPacket();
+		Panic = 0,
+		Fatal = 8,
+		Error = 16,
+		Warning = 24,
+		Info = 32,
+		Verbose = 40,
+		Debug = 48,
+		Trace = 56
+	};
 
-	internal:
-		FFmpegReader(AVFormatContext* avFormatCtx, std::vector<MediaSampleProvider^>* sampleProviders);
-
-	private:
-		AVFormatContext* m_pAvFormatCtx;
-		std::vector<MediaSampleProvider^>* sampleProviders;
+	public interface class ILogProvider
+	{
+		void Log(LogLevel level, String^ message);
 	};
 }
+

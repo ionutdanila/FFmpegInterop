@@ -1,6 +1,6 @@
 //*****************************************************************************
 //
-//	Copyright 2015 Microsoft Corporation
+//	Copyright 2017 Microsoft Corporation
 //
 //	Licensed under the Apache License, Version 2.0 (the "License");
 //	you may not use this file except in compliance with the License.
@@ -17,28 +17,42 @@
 //*****************************************************************************
 
 #pragma once
-#include "NALPacketSampleProvider.h"
+using namespace Platform;
+using namespace Windows::Storage::Streams;
 
 namespace FFmpegInterop
 {
-	ref class H264AVCSampleProvider :
-		public NALPacketSampleProvider
+	public ref class MediaThumbnailData sealed
 	{
-	public:
-		virtual ~H264AVCSampleProvider();
+		IBuffer^ _buffer;
+		String^ _extension;
 
-	internal:
-		H264AVCSampleProvider(
-			FFmpegReader^ reader,
-			AVFormatContext* avFormatCtx,
-			AVCodecContext* avCodecCtx,
-			FFmpegInteropConfig^ config, 
-			int streamIndex,
-			VideoEncodingProperties^ encodingProperties);
-		virtual HRESULT GetSPSAndPPSBuffer(DataWriter^ dataWriter, byte* buf, int length) override;
-		virtual HRESULT WriteNALPacket(AVPacket* avPacket, IBuffer^* pBuffer) override;
-		virtual HRESULT WriteNALPacketAfterExtradata(AVPacket* avPacket, DataWriter^ dataWriter) override;
-		int ReadMultiByteValue(byte* buffer, int position, int numBytes);
-		int m_nalLenSize;
+	public:
+
+		property IBuffer^ Buffer
+		{
+			IBuffer^ get()
+			{
+				return _buffer;
+			}
+		}
+		property String^ Extension
+		{
+			String^ get()
+			{
+				return _extension;
+			}
+		}
+
+		MediaThumbnailData(IBuffer^ buffer, String^ extension)
+		{
+			this->_buffer = buffer;
+			this->_extension = extension;
+		}
+	private: ~MediaThumbnailData()
+		{
+			delete _buffer;
+			delete _extension;
+		}
 	};
 }

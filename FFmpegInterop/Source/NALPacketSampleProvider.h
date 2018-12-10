@@ -17,39 +17,31 @@
 //*****************************************************************************
 
 #pragma once
-#include "UncompressedSampleProvider.h"
-
-extern "C"
-{
-#include <libswresample/swresample.h>
-}
+#include "CompressedSampleProvider.h"
 
 namespace FFmpegInterop
 {
-	ref class UncompressedAudioSampleProvider: UncompressedSampleProvider
+	ref class NALPacketSampleProvider :
+		public CompressedSampleProvider
 	{
 	public:
-		virtual ~UncompressedAudioSampleProvider();
+		virtual ~NALPacketSampleProvider();
+		virtual void Flush() override;
 
 	internal:
-		UncompressedAudioSampleProvider(
+		NALPacketSampleProvider(
 			FFmpegReader^ reader,
 			AVFormatContext* avFormatCtx,
 			AVCodecContext* avCodecCtx,
 			FFmpegInteropConfig^ config, 
-			int streamIndex);
-		virtual HRESULT CreateBufferFromFrame(IBuffer^* pBuffer, AVFrame* avFrame, int64_t& framePts, int64_t& frameDuration) override;
-		IMediaStreamDescriptor^ CreateStreamDescriptor() override;
-		HRESULT CheckFormatChanged(AVFrame* inputFrame);
-		HRESULT UpdateResampler();
-	
+			int streamIndex,
+			VideoEncodingProperties^ encodingProperties);
+		virtual HRESULT CreateBufferFromPacket(AVPacket* avPacket, IBuffer^* pBuffer) override;
+		virtual HRESULT GetSPSAndPPSBuffer(DataWriter^ dataWriter, byte* buf, int length);
+		virtual HRESULT WriteNALPacket(AVPacket* avPacket, IBuffer^* pBuffer);
+		virtual HRESULT WriteNALPacketAfterExtradata(AVPacket* avPacket, DataWriter^ dataWriter);
 
 	private:
-		SwrContext* m_pSwrCtx;
-		AVSampleFormat inSampleFormat, outSampleFormat;
-		int inSampleRate, outSampleRate, inChannels, outChannels;
-		int64 inChannelLayout, outChannelLayout;
-		bool needsUpdateResampler;
+		bool m_bHasSentExtradata;
 	};
 }
-

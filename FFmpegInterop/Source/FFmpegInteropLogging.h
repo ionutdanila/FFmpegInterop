@@ -1,6 +1,6 @@
 //*****************************************************************************
 //
-//	Copyright 2015 Microsoft Corporation
+//	Copyright 2017 Microsoft Corporation
 //
 //	Licensed under the Apache License, Version 2.0 (the "License");
 //	you may not use this file except in compliance with the License.
@@ -17,28 +17,21 @@
 //*****************************************************************************
 
 #pragma once
-#include "NALPacketSampleProvider.h"
+#include "ILogProvider.h"
 
 namespace FFmpegInterop
 {
-	ref class H264AVCSampleProvider :
-		public NALPacketSampleProvider
+	public ref class FFmpegInteropLogging sealed
 	{
 	public:
-		virtual ~H264AVCSampleProvider();
+		static void SetLogLevel(LogLevel level);
+		static void SetLogProvider(ILogProvider^ logProvider);
+		static void SetDefaultLogProvider();
 
-	internal:
-		H264AVCSampleProvider(
-			FFmpegReader^ reader,
-			AVFormatContext* avFormatCtx,
-			AVCodecContext* avCodecCtx,
-			FFmpegInteropConfig^ config, 
-			int streamIndex,
-			VideoEncodingProperties^ encodingProperties);
-		virtual HRESULT GetSPSAndPPSBuffer(DataWriter^ dataWriter, byte* buf, int length) override;
-		virtual HRESULT WriteNALPacket(AVPacket* avPacket, IBuffer^* pBuffer) override;
-		virtual HRESULT WriteNALPacketAfterExtradata(AVPacket* avPacket, DataWriter^ dataWriter) override;
-		int ReadMultiByteValue(byte* buffer, int position, int numBytes);
-		int m_nalLenSize;
+	private:
+		FFmpegInteropLogging();
+
+		static ILogProvider^ s_pLogProvider;
 	};
 }
+

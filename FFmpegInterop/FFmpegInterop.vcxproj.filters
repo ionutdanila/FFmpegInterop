@@ -1,0 +1,80 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="14.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Resources">
+      <UniqueIdentifier>65247ed4-8bf5-4cae-b754-fa343845bdc7</UniqueIdentifier>
+      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tga;tiff;tif;png;wav;mfcribbon-ms</Extensions>
+    </Filter>
+    <Filter Include="Source">
+      <UniqueIdentifier>{b7849935-0342-4c1c-b0e8-3139fc283c06}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="$(MSBuildThisFileDirectory)Source\CompressedSampleProvider.cpp">
+      <Filter>Source</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)Source\FFmpegInteropLogging.cpp">
+      <Filter>Source</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)Source\FFmpegInteropMSS.cpp">
+      <Filter>Source</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)Source\FFmpegReader.cpp">
+      <Filter>Source</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)Source\FrameGrabber.cpp">
+      <Filter>Source</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)Source\H264AVCSampleProvider.cpp">
+      <Filter>Source</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)Source\HEVCSampleProvider.cpp">
+      <Filter>Source</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)Source\MediaSampleProvider.cpp">
+      <Filter>Source</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)Source\NALPacketSampleProvider.cpp">
+      <Filter>Source</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)Source\NativeBufferFactory.cpp">
+      <Filter>Source</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)Source\UncompressedAudioSampleProvider.cpp">
+      <Filter>Source</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)Source\UncompressedSampleProvider.cpp">
+      <Filter>Source</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)Source\UncompressedVideoSampleProvider.cpp">
+      <Filter>Source</Filter>
+    </ClCompile>
+    <ClCompile Include="pch.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <CopyFileToFolders Include="$(MSBuildThisFileDirectory)..\..\runtimes\win10-$(Platform)-aot\native\*.dll" />
+    <CopyFileToFolders Include="$(MSBuildThisFileDirectory)..\..\runtimes\win10-$(Platform)-aot\native\*.dll" />
+    <CopyFileToFolders Include="$(MSBuildThisFileDirectory)..\..\runtimes\win10-$(Platform)-aot\native\*.dll" />
+    <CopyFileToFolders Include="$(MSBuildThisFileDirectory)..\..\runtimes\win10-$(Platform)-aot\native\*.dll" />
+    <CopyFileToFolders Include="$(MSBuildThisFileDirectory)..\..\runtimes\win10-$(Platform)-aot\native\*.dll" />
+    <CopyFileToFolders Include="$(MSBuildThisFileDirectory)..\..\runtimes\win10-$(Platform)-aot\native\*.dll" />
+    <CopyFileToFolders Include="$(MSBuildThisFileDirectory)..\..\runtimes\win10-$(Platform)-aot\native\*.dll" />
+    <CopyFileToFolders Include="$(MSBuildThisFileDirectory)..\..\runtimes\win10-$(Platform)-aot\native\*.dll" />
+    <CopyFileToFolders Include="$(MSBuildThisFileDirectory)..\..\runtimes\win10-$(Platform)-aot\native\*.dll" />
+    <CopyFileToFolders Include="$(MSBuildThisFileDirectory)..\..\runtimes\win10-$(Platform)-aot\native\*.dll" />
+    <CopyFileToFolders Include="$(MSBuildThisFileDirectory)..\..\runtimes\win10-$(Platform)-aot\native\*.dll" />
+    <CopyFileToFolders Include="$(MSBuildThisFileDirectory)..\..\runtimes\win10-$(Platform)-aot\native\*.dll" />
+    <CopyFileToFolders Include="$(MSBuildThisFileDirectory)..\..\runtimes\win10-$(Platform)-aot\native\*.dll" />
+    <CopyFileToFolders Include="$(MSBuildThisFileDirectory)..\..\runtimes\win10-$(Platform)-aot\native\*.dll" />
+    <CopyFileToFolders Include="$(MSBuildThisFileDirectory)..\..\runtimes\win10-$(Platform)-aot\native\*.dll" />
+    <CopyFileToFolders Include="$(MSBuildThisFileDirectory)..\..\runtimes\win10-$(Platform)-aot\native\*.dll" />
+    <CopyFileToFolders Include="$(MSBuildThisFileDirectory)..\..\runtimes\win10-$(Platform)-aot\native\*.dll" />
+    <CopyFileToFolders Include="$(MSBuildThisFileDirectory)..\..\runtimes\win10-$(Platform)-aot\native\*.dll" />
+    <CopyFileToFolders Include="$(MSBuildThisFileDirectory)..\..\runtimes\win10-$(Platform)-aot\native\*.dll" />
+    <CopyFileToFolders Include="$(MSBuildThisFileDirectory)..\..\runtimes\win10-$(Platform)-aot\native\*.dll" />
+    <CopyFileToFolders Include="$(MSBuildThisFileDirectory)..\..\runtimes\win10-$(Platform)-aot\native\*.dll" />
+  </ItemGroup>
+</Project>
