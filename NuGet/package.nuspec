@@ -1,0 +1,48 @@
+<?xml version="1.0"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2013/05/nuspec.xsd">
+  <metadata minClientVersion="3.3">
+    <id>FFmpegInterop.Universal</id>
+    <version>1.0.16</version>
+    <title>FFmpegInterop UWP Library</title>
+    <projectUrl>https://github.com/ionutdanila/FFmpegInterop</projectUrl>
+    <authors>Ionut Danila</authors>
+	<owners>Ionut Danila</owners>
+	<language>en-US</language>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <description>FFmpegInterop Library (x86, x64, ARM, ARM64) for UWP (Universal Windows Platform)</description>
+	<copyright>Ionut Danila</copyright>
+    <tags>ffmpeginterop, ffmpeg, x86, x64, arm, arm64, uwp, ffmpeg-libraries</tags>
+	<iconUrl>https://www.ffmpeg.org/favicon.ico</iconUrl>
+	<license type="expression">MIT</license>
+	<dependencies>
+	  <dependency id="FFmpeg.UWP" version="4.1.32" />
+	</dependencies>
+  </metadata>  
+  
+  <files>
+    <file src="uap10.0\*.props" target="build\uap10.0" />
+  
+    <file src="..\FFmpegInterop\bin\Release\x64\FFmpegInterop.winmd" target="lib\uap10.0" />
+	
+    <file src="..\FFmpegInterop\bin\Release\x64\FFmpegInterop.dll" target="runtimes\win10-x64-aot\native" />
+	<file src="..\FFmpegInterop\bin\Release\x64\FFmpegInterop.pri" target="runtimes\win10-x64-aot\native" />
+	<file src="..\FFmpegInterop\bin\Release\x64\FFmpegInterop.exp" target="runtimes\win10-x64-aot\native" />
+	<file src="..\FFmpegInterop\bin\Release\x64\FFmpegInterop.lib" target="runtimes\win10-x64-aot\native" />
+	
+	<file src="..\FFmpegInterop\bin\Release\x86\FFmpegInterop.dll" target="runtimes\win10-x86-aot\native" />
+	<file src="..\FFmpegInterop\bin\Release\x86\FFmpegInterop.pri" target="runtimes\win10-x86-aot\native" />
+	<file src="..\FFmpegInterop\bin\Release\x86\FFmpegInterop.exp" target="runtimes\win10-x86-aot\native" />
+	<file src="..\FFmpegInterop\bin\Release\x86\FFmpegInterop.lib" target="runtimes\win10-x86-aot\native" />
+
+	<file src="..\FFmpegInterop\bin\Release\arm64\FFmpegInterop.dll" target="runtimes\win10-arm64-aot\native" />
+	<file src="..\FFmpegInterop\bin\Release\arm64\FFmpegInterop.pri" target="runtimes\win10-arm64-aot\native" />
+	<file src="..\FFmpegInterop\bin\Release\arm64\FFmpegInterop.exp" target="runtimes\win10-arm64-aot\native" />
+	<file src="..\FFmpegInterop\bin\Release\arm64\FFmpegInterop.lib" target="runtimes\win10-arm64-aot\native" />
+
+	<file src="..\FFmpegInterop\bin\Release\arm\FFmpegInterop.dll" target="runtimes\win10-arm-aot\native" />
+	<file src="..\FFmpegInterop\bin\Release\arm\FFmpegInterop.pri" target="runtimes\win10-arm-aot\native" />
+	<file src="..\FFmpegInterop\bin\Release\arm\FFmpegInterop.exp" target="runtimes\win10-arm-aot\native" />
+	<file src="..\FFmpegInterop\bin\Release\arm\FFmpegInterop.lib" target="runtimes\win10-arm-aot\native" />
+  </files>
+  
+</package>
