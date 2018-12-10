@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project DefaultTargets="Build" ToolsVersion="14.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
-  <Import Project="..\packages\FFmpeg.UWP.4.1.14\build\native\FFmpeg.UWP.props" Condition="Exists('..\packages\FFmpeg.UWP.4.1.14\build\native\FFmpeg.UWP.props')" />
+  <Import Project="..\packages\FFmpeg.UWP.4.1.31\build\native\FFmpeg.UWP.props" Condition="Exists('..\packages\FFmpeg.UWP.4.1.31\build\native\FFmpeg.UWP.props')" />
   <ItemGroup Label="ProjectConfigurations">
     <ProjectConfiguration Include="Debug|ARM">
       <Configuration>Debug</Configuration>
@@ -401,6 +401,6 @@
     <PropertyGroup>
       <ErrorText>This project references NuGet package(s) that are missing on this computer. Use NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
     </PropertyGroup>
-    <Error Condition="!Exists('..\packages\FFmpeg.UWP.4.1.14\build\native\FFmpeg.UWP.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\FFmpeg.UWP.4.1.14\build\native\FFmpeg.UWP.props'))" />
+    <Error Condition="!Exists('..\packages\FFmpeg.UWP.4.1.31\build\native\FFmpeg.UWP.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\FFmpeg.UWP.4.1.31\build\native\FFmpeg.UWP.props'))" />
   </Target>
 </Project>

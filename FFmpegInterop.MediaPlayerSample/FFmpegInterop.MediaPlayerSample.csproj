@@ -140,27 +140,6 @@
     <Content Include="Assets\Square44x44Logo.targetsize-24_altform-unplated.png" />
     <Content Include="Assets\StoreLogo.png" />
     <Content Include="Assets\Wide310x150Logo.scale-200.png" />
-	<Content Include="$(NuGetPackageRoot)ffmpeg.uwp\4.1.14\runtimes\win10-$(Platform)-aot\native\avcodec-58.dll">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="$(NuGetPackageRoot)ffmpeg.uwp\4.1.14\runtimes\win10-$(Platform)-aot\native\avdevice-58.dll">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="$(NuGetPackageRoot)ffmpeg.uwp\4.1.14\runtimes\win10-$(Platform)-aot\native\avfilter-7.dll">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="$(NuGetPackageRoot)ffmpeg.uwp\4.1.14\runtimes\win10-$(Platform)-aot\native\avformat-58.dll">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="$(NuGetPackageRoot)ffmpeg.uwp\4.1.14\runtimes\win10-$(Platform)-aot\native\avutil-56.dll">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="$(NuGetPackageRoot)ffmpeg.uwp\4.1.14\runtimes\win10-$(Platform)-aot\native\swresample-3.dll">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="$(NuGetPackageRoot)ffmpeg.uwp\4.1.14\runtimes\win10-$(Platform)-aot\native\swscale-5.dll">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
   </ItemGroup>
   <ItemGroup>
     <ApplicationDefinition Include="App.xaml">
@@ -170,7 +149,7 @@
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="FFmpeg.UWP">
-      <Version>4.1.14</Version>
+      <Version>4.1.31</Version>
     </PackageReference>
     <PackageReference Include="Microsoft.NETCore.UniversalWindowsPlatform">
       <Version>6.1.9</Version>
