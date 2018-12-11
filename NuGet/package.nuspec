@@ -6,7 +6,6 @@
     <title>FFmpegInterop UWP Library</title>
     <projectUrl>https://github.com/ionutdanila/FFmpegInterop</projectUrl>
     <authors>Ionut Danila</authors>
-	<owners>Ionut Danila</owners>
 	<language>en-US</language>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <description>FFmpegInterop Library (x86, x64, ARM, ARM64) for UWP (Universal Windows Platform)</description>
