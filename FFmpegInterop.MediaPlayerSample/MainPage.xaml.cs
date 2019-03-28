@@ -19,7 +19,8 @@ namespace FFmpegInterop.MediaPlayerSample
 {
     public sealed partial class MainPage : Page
     {
-        string streamUri = "rtsp://184.72.239.149/vod/mp4:BigBuckBunny_175k.mov";
+        //private string streamUri = "rtsp://184.72.239.149/vod/mp4:BigBuckBunny_175k.mov";
+        private string streamUri = "http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4";
 
         public MainPage()
         {
