@@ -198,7 +198,7 @@
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="FFmpeg.UWP">
-      <Version>4.1.2.1</Version>
+      <Version>4.1.2.2</Version>
     </PackageReference>
     <PackageReference Include="Microsoft.NETCore.UniversalWindowsPlatform">
       <Version>6.2.8</Version>
