@@ -3,21 +3,9 @@
     
   <ItemGroup>
 	<NativeDlls Include="$(MSBuildThisFileDirectory)..\..\runtimes\win10-$(Platform)-aot\native\*.dll" />
-	<NativeLibs Include="$(MSBuildThisFileDirectory)..\..\runtimes\win10-$(Platform)-aot\native\*.lib" />
-	<NativeExps Include="$(MSBuildThisFileDirectory)..\..\runtimes\win10-$(Platform)-aot\native\*.exp" />
 	<NativePris Include="$(MSBuildThisFileDirectory)..\..\runtimes\win10-$(Platform)-aot\native\*.pri" />
 	
 	<Content Include="@(NativeDlls)">
-	  <Link>%(RecursiveDir)%(FileName)%(Extension)</Link>
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-	
-	<Content Include="@(NativeLibs)">
-	  <Link>%(RecursiveDir)%(FileName)%(Extension)</Link>
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-	
-	<Content Include="@(NativeExps)">
 	  <Link>%(RecursiveDir)%(FileName)%(Extension)</Link>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
@@ -27,5 +15,4 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
   </ItemGroup>
-  
 </Project>
