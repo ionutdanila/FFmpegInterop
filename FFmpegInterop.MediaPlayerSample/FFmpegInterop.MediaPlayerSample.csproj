@@ -204,8 +204,8 @@
     </ApplicationDefinition>
   </ItemGroup>
   <ItemGroup>
-    <PackageReference Include="FFmpegInterop.Universal">
-      <Version>1.1.11</Version>
+    <PackageReference Include="FFmpeg.UWP">
+      <Version>4.1.3</Version>
     </PackageReference>
     <PackageReference Include="Microsoft.NETCore.UniversalWindowsPlatform">
       <Version>6.2.8</Version>
@@ -224,6 +224,12 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\FFmpegInterop\FFmpegInterop.vcxproj">
+      <Project>{9cfa3b3e-b7af-4629-84e2-c962c5b046b1}</Project>
+      <Name>FFmpegInterop.Universal</Name>
+    </ProjectReference>
   </ItemGroup>
   <PropertyGroup Condition=" '$(VisualStudioVersion)' == '' or '$(VisualStudioVersion)' &lt; '14.0' ">
     <VisualStudioVersion>14.0</VisualStudioVersion>
