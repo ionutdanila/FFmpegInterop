@@ -1,6 +1,6 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <Project DefaultTargets="Build" ToolsVersion="14.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
-  <Import Project="..\packages\Microsoft.NETCore.UniversalWindowsPlatform.6.2.8\build\Microsoft.NETCore.UniversalWindowsPlatform.props" Condition="Exists('..\packages\Microsoft.NETCore.UniversalWindowsPlatform.6.2.8\build\Microsoft.NETCore.UniversalWindowsPlatform.props')" />
+  <Import Project="$(SolutionDir)packages\Microsoft.Windows.CppWinRT.2.0.250303.1\build\native\Microsoft.Windows.CppWinRT.props" Condition="Exists('$(SolutionDir)packages\Microsoft.Windows.CppWinRT.2.0.250303.1\build\native\Microsoft.Windows.CppWinRT.props')" />
   <ItemGroup Label="ProjectConfigurations">
     <ProjectConfiguration Include="Debug|ARM">
       <Configuration>Debug</Configuration>
@@ -38,435 +38,181 @@
   <PropertyGroup Label="Globals">
     <ProjectGuid>{9cfa3b3e-b7af-4629-84e2-c962c5b046b1}</ProjectGuid>
     <Keyword>WindowsRuntimeComponent</Keyword>
-    <ProjectName>FFmpegInterop.Universal</ProjectName>
+    <ProjectName>FFmpegInterop</ProjectName>
     <RootNamespace>FFmpegInterop</RootNamespace>
     <DefaultLanguage>en-US</DefaultLanguage>
-    <MinimumVisualStudioVersion>14.0</MinimumVisualStudioVersion>
+    <MinimumVisualStudioVersion>17.0</MinimumVisualStudioVersion>
     <AppContainerApplication>true</AppContainerApplication>
     <ApplicationType>Windows Store</ApplicationType>
-    <WindowsTargetPlatformVersion>10.0.17763.0</WindowsTargetPlatformVersion>
-    <WindowsTargetPlatformMinVersion>10.0.15063.0</WindowsTargetPlatformMinVersion>
+    <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
+    <WindowsTargetPlatformMinVersion>10.0.10240.0</WindowsTargetPlatformMinVersion>
     <ApplicationTypeRevision>10.0</ApplicationTypeRevision>
+    <CppWinRTOptimized>true</CppWinRTOptimized>
+    <MinimalCoreWin>true</MinimalCoreWin>
+    <_NoWinAPIFamilyApp>true</_NoWinAPIFamilyApp>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
+  <PropertyGroup Label="Configuration">
     <ConfigurationType>DynamicLibrary</ConfigurationType>
-    <UseDebugLibraries>false</UseDebugLibraries>
-    <PlatformToolset>v141</PlatformToolset>
-    <WholeProgramOptimization>true</WholeProgramOptimization>
+    <PlatformToolset>v143</PlatformToolset>
+    <CharacterSet>Unicode</CharacterSet>
+    <GenerateManifest>false</GenerateManifest>
   </PropertyGroup>
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|ARM'" Label="Configuration">
-    <ConfigurationType>DynamicLibrary</ConfigurationType>
-    <UseDebugLibraries>false</UseDebugLibraries>
-    <PlatformToolset>v141</PlatformToolset>
-    <WholeProgramOptimization>true</WholeProgramOptimization>
+  <PropertyGroup Condition="'$(Configuration)'=='Debug'" Label="Configuration">
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <LinkIncremental>true</LinkIncremental>
   </PropertyGroup>
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|ARM64'" Label="Configuration">
-    <ConfigurationType>DynamicLibrary</ConfigurationType>
+  <PropertyGroup Condition="'$(Configuration)'=='Release'" Label="Configuration">
     <UseDebugLibraries>false</UseDebugLibraries>
-    <PlatformToolset>v141</PlatformToolset>
     <WholeProgramOptimization>true</WholeProgramOptimization>
+    <LinkIncremental>false</LinkIncremental>
+    <SpectreMitigation Condition="'$(VC_Target_Library_Platform)' == 'Desktop' or '$(VC_Target_Library_Platform)' == 'OneCore'">Spectre</SpectreMitigation>
   </PropertyGroup>
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
-    <ConfigurationType>DynamicLibrary</ConfigurationType>
-    <UseDebugLibraries>false</UseDebugLibraries>
-    <PlatformToolset>v141</PlatformToolset>
-    <WholeProgramOptimization>true</WholeProgramOptimization>
-  </PropertyGroup>
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
-    <ConfigurationType>DynamicLibrary</ConfigurationType>
-    <UseDebugLibraries>false</UseDebugLibraries>
-    <WholeProgramOptimization>true</WholeProgramOptimization>
-    <PlatformToolset>v141</PlatformToolset>
-  </PropertyGroup>
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|ARM'" Label="Configuration">
-    <ConfigurationType>DynamicLibrary</ConfigurationType>
-    <UseDebugLibraries>false</UseDebugLibraries>
-    <WholeProgramOptimization>true</WholeProgramOptimization>
-    <PlatformToolset>v141</PlatformToolset>
-  </PropertyGroup>
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|ARM64'" Label="Configuration">
-    <ConfigurationType>DynamicLibrary</ConfigurationType>
-    <UseDebugLibraries>false</UseDebugLibraries>
-    <WholeProgramOptimization>true</WholeProgramOptimization>
-    <PlatformToolset>v141</PlatformToolset>
-  </PropertyGroup>
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
-    <ConfigurationType>DynamicLibrary</ConfigurationType>
-    <UseDebugLibraries>false</UseDebugLibraries>
-    <WholeProgramOptimization>true</WholeProgramOptimization>
-    <PlatformToolset>v141</PlatformToolset>
+  <PropertyGroup>
+    <Fuzzing Condition="'$(Fuzzing)' == ''">false</Fuzzing>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
-  <ImportGroup Label="ExtensionSettings">
-  </ImportGroup>
-  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
-    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
-  </ImportGroup>
-  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
-    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
-  </ImportGroup>
-  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|ARM'">
-    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
-  </ImportGroup>
-  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Debug|ARM64'" Label="PropertySheets">
-    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
-  </ImportGroup>
-  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|ARM'">
-    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
-  </ImportGroup>
-  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Release|ARM64'" Label="PropertySheets">
-    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
-  </ImportGroup>
-  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
-    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
-  </ImportGroup>
-  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
-    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
-  </ImportGroup>
+  <ItemDefinitionGroup>
+    <ClCompile>
+      <PrecompiledHeader>Use</PrecompiledHeader>
+      <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
+      <PrecompiledHeaderOutputFile>$(IntDir)pch.pch</PrecompiledHeaderOutputFile>
+      <PreprocessorDefinitions>_WINRT_DLL;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalUsingDirectories>$(WindowsSDK_WindowsMetadata);$(AdditionalUsingDirectories)</AdditionalUsingDirectories>
+      <AdditionalOptions>/bigobj /w44388 %(AdditionalOptions)</AdditionalOptions>
+      <AdditionalIncludeDirectories>$(PlatformTarget)\include;$(ProjectDir);$(GeneratedFilesDir);$(IntDir);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <LanguageStandard>stdcpplatest</LanguageStandard>
+      <WarningLevel>Level4</WarningLevel>
+      <TreatWarningAsError>true</TreatWarningAsError>
+    </ClCompile>
+    <Link>
+      <SubSystem>Console</SubSystem>
+      <GenerateWindowsMetadata>true</GenerateWindowsMetadata>
+      <AdditionalLibraryDirectories>%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalDependencies>avcodec.lib;avformat.lib;avutil.lib;swresample.lib;swscale.lib;mfplat.lib;mfuuid.lib;wmcodecdspuuid.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <ModuleDefinitionFile>FFmpegInterop.def</ModuleDefinitionFile>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)'=='Debug'">
+    <ClCompile>
+      <PreprocessorDefinitions>_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+    </ClCompile>
+    <Link>
+      <GenerateDebugInformation>DebugFull</GenerateDebugInformation>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)'=='Release'">
+    <ClCompile>
+      <PreprocessorDefinitions>NDEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <ControlFlowGuard>Guard</ControlFlowGuard>
+      <Optimization>MinSpace</Optimization>
+      <FavorSizeOrSpeed>Size</FavorSizeOrSpeed>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <StringPooling>true</StringPooling>
+      <RuntimeTypeInfo>false</RuntimeTypeInfo>
+    </ClCompile>
+    <Link>
+      <AdditionalOptions>/GUARD:CF %(AdditionalOptions)</AdditionalOptions>
+      <CETCompat Condition="'$(Platform)'=='Win32' or '$(Platform)'=='x64'">true</CETCompat>
+      <Profile>true</Profile>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <OptimizeReferences>true</OptimizeReferences>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Fuzzing)'=='true'">
+    <ClCompile>
+      <AdditionalOptions>/fsanitize=address /fsanitize-coverage=inline-8bit-counters /fsanitize-coverage=edge /fsanitize-coverage=trace-cmp /fsanitize-coverage=trace-div %(AdditionalOptions)</AdditionalOptions>
+      <DebugInformationFormat Condition="'$(Configuration)'=='Debug'">ProgramDatabase</DebugInformationFormat>
+    </ClCompile>
+    <Link>
+      <AdditionalLibraryDirectories>$(VCToolsInstallDir)\lib\$(PlatformTarget);%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalDependencies Condition="'$(RuntimeLibrary)'=='MultiThreadedDebug' or '$(RuntimeLibrary)'=='MultiThreaded'">libsancov.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies Condition="'$(RuntimeLibrary)'!='MultiThreadedDebug' and '$(RuntimeLibrary)'!='MultiThreaded'">sancov.lib;%(AdditionalDependencies)</AdditionalDependencies>
+    </Link>
+  </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="$(MSBuildThisFileDirectory)Source\CompressedSampleProvider.cpp" />
-    <ClCompile Include="$(MSBuildThisFileDirectory)Source\FFmpegInteropLogging.cpp" />
-    <ClCompile Include="$(MSBuildThisFileDirectory)Source\FFmpegInteropMSS.cpp" />
-    <ClCompile Include="$(MSBuildThisFileDirectory)Source\FFmpegReader.cpp" />
-    <ClCompile Include="$(MSBuildThisFileDirectory)Source\FrameGrabber.cpp" />
-    <ClCompile Include="$(MSBuildThisFileDirectory)Source\H264AVCSampleProvider.cpp" />
-    <ClCompile Include="$(MSBuildThisFileDirectory)Source\HEVCSampleProvider.cpp" />
-    <ClCompile Include="$(MSBuildThisFileDirectory)Source\MediaSampleProvider.cpp" />
-    <ClCompile Include="$(MSBuildThisFileDirectory)Source\NALPacketSampleProvider.cpp" />
-    <ClCompile Include="$(MSBuildThisFileDirectory)Source\NativeBufferFactory.cpp" />
-    <ClCompile Include="$(MSBuildThisFileDirectory)Source\UncompressedAudioSampleProvider.cpp" />
-    <ClCompile Include="$(MSBuildThisFileDirectory)Source\UncompressedSampleProvider.cpp" />
-    <ClCompile Include="$(MSBuildThisFileDirectory)Source\UncompressedVideoSampleProvider.cpp" />
+    <ClInclude Include="ACMSampleProvider.h" />
+    <ClInclude Include="AV1SampleProvider.h" />
+    <ClInclude Include="BitstreamReader.h" />
+    <ClInclude Include="FFmpegInteropBuffer.h" />
+    <ClInclude Include="FFmpegInteropByteStreamHandler.h" />
+    <ClInclude Include="FFmpegInteropLogging.h" />
+    <ClInclude Include="FFmpegInteropMSS.h" />
+    <ClInclude Include="FFmpegInteropMSSConfig.h" />
+    <ClInclude Include="FLACSampleProvider.h" />
+    <ClInclude Include="HEVCSampleProvider.h" />
+    <ClInclude Include="LogEventArgs.h" />
+    <ClInclude Include="Metadata.h" />
+    <ClInclude Include="MFAttributesImpl.h" />
+    <ClInclude Include="MPEGSampleProvider.h" />
+    <ClInclude Include="NALUSampleProvider.h" />
+    <ClInclude Include="Reader.h" />
+    <ClInclude Include="H264SampleProvider.h" />
+    <ClInclude Include="SampleProvider.h" />
+    <ClInclude Include="StreamFactory.h" />
+    <ClInclude Include="SubtitleSampleProvider.h" />
+    <ClInclude Include="Tracing.h" />
+    <ClInclude Include="UncompressedAudioSampleProvider.h" />
+    <ClInclude Include="UncompressedSampleProvider.h" />
+    <ClInclude Include="UncompressedVideoSampleProvider.h" />
+    <ClInclude Include="pch.h" />
+    <ClInclude Include="Utility.h" />
+    <ClInclude Include="VFWSampleProvider.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="ACMSampleProvider.cpp" />
+    <ClCompile Include="AV1SampleProvider.cpp" />
+    <ClCompile Include="BitstreamReader.cpp" />
+    <ClCompile Include="dllmain.cpp" />
+    <ClCompile Include="FFmpegInteropBuffer.cpp" />
+    <ClCompile Include="FFmpegInteropByteStreamHandler.cpp" />
+    <ClCompile Include="FFmpegInteropLogging.cpp" />
+    <ClCompile Include="FFmpegInteropMSS.cpp" />
+    <ClCompile Include="FFmpegInteropMSSConfig.cpp" />
+    <ClCompile Include="FLACSampleProvider.cpp" />
+    <ClCompile Include="HEVCSampleProvider.cpp" />
+    <ClCompile Include="LogEventArgs.cpp" />
+    <ClCompile Include="Metadata.cpp" />
+    <ClCompile Include="MPEGSampleProvider.cpp" />
+    <ClCompile Include="NALUSampleProvider.cpp" />
+    <ClCompile Include="Reader.cpp" />
+    <ClCompile Include="H264SampleProvider.cpp" />
+    <ClCompile Include="SampleProvider.cpp" />
+    <ClCompile Include="StreamFactory.cpp" />
+    <ClCompile Include="SubtitleSampleProvider.cpp" />
+    <ClCompile Include="Tracing.cpp" />
+    <ClCompile Include="UncompressedAudioSampleProvider.cpp" />
+    <ClCompile Include="UncompressedSampleProvider.cpp" />
+    <ClCompile Include="UncompressedVideoSampleProvider.cpp" />
+    <ClCompile Include="$(GeneratedFilesDir)module.g.cpp" />
+    <ClCompile Include="pch.cpp">
+      <PrecompiledHeader>Create</PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="Utility.cpp" />
+    <ClCompile Include="VFWSampleProvider.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="FFmpegInterop.def" />
     <None Include="packages.config" />
   </ItemGroup>
-  <PropertyGroup Label="UserMacros" />
-  <PropertyGroup />
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
-    <GenerateManifest>false</GenerateManifest>
-    <OutDir>bin\$(Configuration)\$(PlatformTarget)\</OutDir>
-    <IntDir>obj\$(Configuration)\$(PlatformTarget)\</IntDir>
-    <LinkIncremental>false</LinkIncremental>
-    <TargetName>FFmpegInterop</TargetName>
-  </PropertyGroup>
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
-    <GenerateManifest>false</GenerateManifest>
-    <OutDir>bin\$(Configuration)\$(PlatformTarget)\</OutDir>
-    <IntDir>obj\$(Configuration)\$(PlatformTarget)\</IntDir>
-    <LinkIncremental>false</LinkIncremental>
-    <TargetName>FFmpegInterop</TargetName>
-  </PropertyGroup>
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|ARM'">
-    <GenerateManifest>false</GenerateManifest>
-    <OutDir>bin\$(Configuration)\$(PlatformTarget)\</OutDir>
-    <IntDir>obj\$(Configuration)\$(PlatformTarget)\</IntDir>
-    <LinkIncremental>false</LinkIncremental>
-    <TargetName>FFmpegInterop</TargetName>
-  </PropertyGroup>
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|ARM64'">
-    <LinkIncremental>false</LinkIncremental>
-    <GenerateManifest>false</GenerateManifest>
-    <OutDir>bin\$(Configuration)\$(PlatformTarget)\</OutDir>
-    <IntDir>obj\$(Configuration)\$(PlatformTarget)\</IntDir>
-    <TargetName>FFmpegInterop</TargetName>
-  </PropertyGroup>
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|ARM'">
-    <GenerateManifest>false</GenerateManifest>
-    <OutDir>bin\$(Configuration)\$(PlatformTarget)\</OutDir>
-    <IntDir>obj\$(Configuration)\$(PlatformTarget)\</IntDir>
-    <LinkIncremental>false</LinkIncremental>
-    <TargetName>FFmpegInterop</TargetName>
-  </PropertyGroup>
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|ARM64'">
-    <LinkIncremental>false</LinkIncremental>
-    <GenerateManifest>false</GenerateManifest>
-    <OutDir>bin\$(Configuration)\$(PlatformTarget)\</OutDir>
-    <IntDir>obj\$(Configuration)\$(PlatformTarget)\</IntDir>
-    <TargetName>FFmpegInterop</TargetName>
-  </PropertyGroup>
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
-    <GenerateManifest>false</GenerateManifest>
-    <OutDir>bin\$(Configuration)\$(PlatformTarget)\</OutDir>
-    <IntDir>obj\$(Configuration)\$(PlatformTarget)\</IntDir>
-    <LinkIncremental>false</LinkIncremental>
-    <TargetName>FFmpegInterop</TargetName>
-  </PropertyGroup>
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
-    <GenerateManifest>false</GenerateManifest>
-    <OutDir>bin\$(Configuration)\$(PlatformTarget)\</OutDir>
-    <IntDir>obj\$(Configuration)\$(PlatformTarget)\</IntDir>
-    <LinkIncremental>false</LinkIncremental>
-    <TargetName>FFmpegInterop</TargetName>
-  </PropertyGroup>
-  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
-    <ClCompile>
-      <PrecompiledHeader>NotUsing</PrecompiledHeader>
-      <PreprocessorDefinitions>_WINRT_DLL;Universal;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <PrecompiledHeaderFile>
-      </PrecompiledHeaderFile>
-      <PrecompiledHeaderOutputFile>
-      </PrecompiledHeaderOutputFile>
-      <AdditionalUsingDirectories>$(WindowsSDK_WindowsMetadata);$(AdditionalUsingDirectories)</AdditionalUsingDirectories>
-      <AdditionalOptions>/bigobj %(AdditionalOptions)</AdditionalOptions>
-      <DisableSpecificWarnings>28204</DisableSpecificWarnings>
-      <AdditionalIncludeDirectories>$(ProjectDir)Source;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-      <DebugInformationFormat>None</DebugInformationFormat>
-      <FunctionLevelLinking>false</FunctionLevelLinking>
-      <BasicRuntimeChecks>Default</BasicRuntimeChecks>
-      <MultiProcessorCompilation>false</MultiProcessorCompilation>
-      <GenerateXMLDocumentationFiles>false</GenerateXMLDocumentationFiles>
-      <SupportJustMyCode>false</SupportJustMyCode>
-      <WholeProgramOptimization>false</WholeProgramOptimization>
-    </ClCompile>
-    <Link>
-      <SubSystem>Console</SubSystem>
-      <IgnoreAllDefaultLibraries>false</IgnoreAllDefaultLibraries>
-      <AdditionalDependencies>shcore.lib;runtimeobject.lib;mfuuid.lib;%(AdditionalDependencies)</AdditionalDependencies>
-      <AdditionalLibraryDirectories>%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
-      <OptimizeReferences>true</OptimizeReferences>
-      <EnableCOMDATFolding>true</EnableCOMDATFolding>
-      <ImageHasSafeExceptionHandlers>true</ImageHasSafeExceptionHandlers>
-      <GenerateDebugInformation>false</GenerateDebugInformation>
-      <LinkTimeCodeGeneration>Default</LinkTimeCodeGeneration>
-    </Link>
-  </ItemDefinitionGroup>
-  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
-    <ClCompile>
-      <PrecompiledHeader>NotUsing</PrecompiledHeader>
-      <PreprocessorDefinitions>_WINRT_DLL;Universal;NDEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <PrecompiledHeaderFile>
-      </PrecompiledHeaderFile>
-      <PrecompiledHeaderOutputFile>
-      </PrecompiledHeaderOutputFile>
-      <AdditionalUsingDirectories>$(WindowsSDK_WindowsMetadata);$(AdditionalUsingDirectories)</AdditionalUsingDirectories>
-      <AdditionalOptions>/bigobj %(AdditionalOptions)</AdditionalOptions>
-      <DisableSpecificWarnings>28204</DisableSpecificWarnings>
-      <AdditionalIncludeDirectories>$(ProjectDir)Source;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-      <Optimization>MaxSpeed</Optimization>
-      <IntrinsicFunctions>true</IntrinsicFunctions>
-      <BasicRuntimeChecks>Default</BasicRuntimeChecks>
-      <FunctionLevelLinking>false</FunctionLevelLinking>
-      <MultiProcessorCompilation>false</MultiProcessorCompilation>
-      <GenerateXMLDocumentationFiles>false</GenerateXMLDocumentationFiles>
-      <DebugInformationFormat>None</DebugInformationFormat>
-    </ClCompile>
-    <Link>
-      <SubSystem>Console</SubSystem>
-      <IgnoreAllDefaultLibraries>false</IgnoreAllDefaultLibraries>
-      <AdditionalDependencies>shcore.lib;runtimeobject.lib;mfuuid.lib;%(AdditionalDependencies)</AdditionalDependencies>
-      <AdditionalLibraryDirectories>%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
-      <GenerateDebugInformation>false</GenerateDebugInformation>
-      <OptimizeReferences>true</OptimizeReferences>
-      <EnableCOMDATFolding>true</EnableCOMDATFolding>
-      <ImageHasSafeExceptionHandlers>true</ImageHasSafeExceptionHandlers>
-      <LinkTimeCodeGeneration>Default</LinkTimeCodeGeneration>
-    </Link>
-  </ItemDefinitionGroup>
-  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|ARM'">
-    <ClCompile>
-      <PrecompiledHeader>NotUsing</PrecompiledHeader>
-      <PreprocessorDefinitions>_WINRT_DLL;Universal;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <PrecompiledHeaderFile>
-      </PrecompiledHeaderFile>
-      <PrecompiledHeaderOutputFile>
-      </PrecompiledHeaderOutputFile>
-      <AdditionalUsingDirectories>$(WindowsSDK_WindowsMetadata);$(AdditionalUsingDirectories)</AdditionalUsingDirectories>
-      <AdditionalOptions>/bigobj %(AdditionalOptions)</AdditionalOptions>
-      <DisableSpecificWarnings>28204</DisableSpecificWarnings>
-      <AdditionalIncludeDirectories>$(ProjectDir)Source;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-      <FunctionLevelLinking>false</FunctionLevelLinking>
-      <BasicRuntimeChecks>Default</BasicRuntimeChecks>
-      <MultiProcessorCompilation>false</MultiProcessorCompilation>
-      <GenerateXMLDocumentationFiles>false</GenerateXMLDocumentationFiles>
-      <DebugInformationFormat>None</DebugInformationFormat>
-      <SupportJustMyCode>false</SupportJustMyCode>
-      <WholeProgramOptimization>false</WholeProgramOptimization>
-    </ClCompile>
-    <Link>
-      <SubSystem>Console</SubSystem>
-      <IgnoreAllDefaultLibraries>false</IgnoreAllDefaultLibraries>
-      <AdditionalDependencies>shcore.lib;runtimeobject.lib;mfuuid.lib;%(AdditionalDependencies)</AdditionalDependencies>
-      <AdditionalLibraryDirectories>%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
-      <OptimizeReferences>true</OptimizeReferences>
-      <EnableCOMDATFolding>true</EnableCOMDATFolding>
-      <ImageHasSafeExceptionHandlers>false</ImageHasSafeExceptionHandlers>
-      <GenerateDebugInformation>false</GenerateDebugInformation>
-      <LinkTimeCodeGeneration>Default</LinkTimeCodeGeneration>
-    </Link>
-  </ItemDefinitionGroup>
-  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|ARM64'">
-    <ClCompile>
-      <PrecompiledHeader>NotUsing</PrecompiledHeader>
-      <PreprocessorDefinitions>_WINRT_DLL;Universal;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <PrecompiledHeaderFile>
-      </PrecompiledHeaderFile>
-      <PrecompiledHeaderOutputFile>
-      </PrecompiledHeaderOutputFile>
-      <AdditionalUsingDirectories>$(WindowsSDK_WindowsMetadata);$(AdditionalUsingDirectories)</AdditionalUsingDirectories>
-      <AdditionalOptions>/bigobj %(AdditionalOptions)</AdditionalOptions>
-      <DisableSpecificWarnings>28204</DisableSpecificWarnings>
-      <AdditionalIncludeDirectories>$(ProjectDir)Source;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-      <FunctionLevelLinking>false</FunctionLevelLinking>
-      <BasicRuntimeChecks>Default</BasicRuntimeChecks>
-      <MultiProcessorCompilation>false</MultiProcessorCompilation>
-      <GenerateXMLDocumentationFiles>false</GenerateXMLDocumentationFiles>
-      <DebugInformationFormat>None</DebugInformationFormat>
-      <SupportJustMyCode>false</SupportJustMyCode>
-      <WholeProgramOptimization>false</WholeProgramOptimization>
-    </ClCompile>
-    <Link>
-      <SubSystem>Console</SubSystem>
-      <IgnoreAllDefaultLibraries>false</IgnoreAllDefaultLibraries>
-      <AdditionalDependencies>shcore.lib;runtimeobject.lib;mfuuid.lib;%(AdditionalDependencies)</AdditionalDependencies>
-      <AdditionalLibraryDirectories>%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
-      <OptimizeReferences>true</OptimizeReferences>
-      <EnableCOMDATFolding>true</EnableCOMDATFolding>
-      <ImageHasSafeExceptionHandlers>false</ImageHasSafeExceptionHandlers>
-      <GenerateDebugInformation>false</GenerateDebugInformation>
-      <LinkTimeCodeGeneration>Default</LinkTimeCodeGeneration>
-    </Link>
-  </ItemDefinitionGroup>
-  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|ARM'">
-    <ClCompile>
-      <PrecompiledHeader>NotUsing</PrecompiledHeader>
-      <PreprocessorDefinitions>_WINRT_DLL;Universal;NDEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <PrecompiledHeaderFile>
-      </PrecompiledHeaderFile>
-      <PrecompiledHeaderOutputFile>
-      </PrecompiledHeaderOutputFile>
-      <AdditionalUsingDirectories>$(WindowsSDK_WindowsMetadata);$(AdditionalUsingDirectories)</AdditionalUsingDirectories>
-      <AdditionalOptions>/bigobj %(AdditionalOptions)</AdditionalOptions>
-      <DisableSpecificWarnings>28204</DisableSpecificWarnings>
-      <AdditionalIncludeDirectories>$(ProjectDir)Source;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-      <Optimization>MaxSpeed</Optimization>
-      <IntrinsicFunctions>true</IntrinsicFunctions>
-      <BasicRuntimeChecks>Default</BasicRuntimeChecks>
-      <FunctionLevelLinking>false</FunctionLevelLinking>
-      <MultiProcessorCompilation>false</MultiProcessorCompilation>
-      <GenerateXMLDocumentationFiles>false</GenerateXMLDocumentationFiles>
-      <DebugInformationFormat>None</DebugInformationFormat>
-    </ClCompile>
-    <Link>
-      <SubSystem>Console</SubSystem>
-      <IgnoreAllDefaultLibraries>false</IgnoreAllDefaultLibraries>
-      <AdditionalDependencies>shcore.lib;runtimeobject.lib;mfuuid.lib;%(AdditionalDependencies)</AdditionalDependencies>
-      <AdditionalLibraryDirectories>%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
-      <GenerateDebugInformation>false</GenerateDebugInformation>
-      <OptimizeReferences>true</OptimizeReferences>
-      <EnableCOMDATFolding>true</EnableCOMDATFolding>
-      <ImageHasSafeExceptionHandlers>false</ImageHasSafeExceptionHandlers>
-      <LinkTimeCodeGeneration>Default</LinkTimeCodeGeneration>
-    </Link>
-  </ItemDefinitionGroup>
-  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|ARM64'">
-    <ClCompile>
-      <PrecompiledHeader>NotUsing</PrecompiledHeader>
-      <PreprocessorDefinitions>_WINRT_DLL;Universal;NDEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <PrecompiledHeaderFile>
-      </PrecompiledHeaderFile>
-      <PrecompiledHeaderOutputFile>
-      </PrecompiledHeaderOutputFile>
-      <AdditionalUsingDirectories>$(WindowsSDK_WindowsMetadata);$(AdditionalUsingDirectories)</AdditionalUsingDirectories>
-      <AdditionalOptions>/bigobj %(AdditionalOptions)</AdditionalOptions>
-      <DisableSpecificWarnings>28204</DisableSpecificWarnings>
-      <AdditionalIncludeDirectories>$(ProjectDir)Source;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-      <Optimization>MaxSpeed</Optimization>
-      <IntrinsicFunctions>true</IntrinsicFunctions>
-      <BasicRuntimeChecks>Default</BasicRuntimeChecks>
-      <FunctionLevelLinking>false</FunctionLevelLinking>
-      <MultiProcessorCompilation>false</MultiProcessorCompilation>
-      <GenerateXMLDocumentationFiles>false</GenerateXMLDocumentationFiles>
-      <DebugInformationFormat>None</DebugInformationFormat>
-    </ClCompile>
-    <Link>
-      <SubSystem>Console</SubSystem>
-      <IgnoreAllDefaultLibraries>false</IgnoreAllDefaultLibraries>
-      <AdditionalDependencies>shcore.lib;runtimeobject.lib;mfuuid.lib;%(AdditionalDependencies)</AdditionalDependencies>
-      <AdditionalLibraryDirectories>%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
-      <GenerateDebugInformation>false</GenerateDebugInformation>
-      <OptimizeReferences>true</OptimizeReferences>
-      <EnableCOMDATFolding>true</EnableCOMDATFolding>
-      <ImageHasSafeExceptionHandlers>false</ImageHasSafeExceptionHandlers>
-      <LinkTimeCodeGeneration>Default</LinkTimeCodeGeneration>
-    </Link>
-  </ItemDefinitionGroup>
-  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
-    <ClCompile>
-      <PrecompiledHeader>NotUsing</PrecompiledHeader>
-      <PreprocessorDefinitions>_WINRT_DLL;Universal;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <PrecompiledHeaderFile>
-      </PrecompiledHeaderFile>
-      <PrecompiledHeaderOutputFile>
-      </PrecompiledHeaderOutputFile>
-      <AdditionalUsingDirectories>$(WindowsSDK_WindowsMetadata);$(AdditionalUsingDirectories)</AdditionalUsingDirectories>
-      <AdditionalOptions>/bigobj %(AdditionalOptions)</AdditionalOptions>
-      <DisableSpecificWarnings>28204</DisableSpecificWarnings>
-      <AdditionalIncludeDirectories>$(ProjectDir)Source;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-      <DebugInformationFormat>None</DebugInformationFormat>
-      <FunctionLevelLinking>false</FunctionLevelLinking>
-      <BasicRuntimeChecks>Default</BasicRuntimeChecks>
-      <MultiProcessorCompilation>false</MultiProcessorCompilation>
-      <GenerateXMLDocumentationFiles>false</GenerateXMLDocumentationFiles>
-      <SupportJustMyCode>false</SupportJustMyCode>
-      <WholeProgramOptimization>false</WholeProgramOptimization>
-    </ClCompile>
-    <Link>
-      <SubSystem>Console</SubSystem>
-      <IgnoreAllDefaultLibraries>false</IgnoreAllDefaultLibraries>
-      <AdditionalDependencies>shcore.lib;runtimeobject.lib;mfuuid.lib;%(AdditionalDependencies)</AdditionalDependencies>
-      <AdditionalLibraryDirectories>%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
-      <OptimizeReferences>true</OptimizeReferences>
-      <EnableCOMDATFolding>true</EnableCOMDATFolding>
-      <ImageHasSafeExceptionHandlers>false</ImageHasSafeExceptionHandlers>
-      <GenerateDebugInformation>false</GenerateDebugInformation>
-      <LinkTimeCodeGeneration>Default</LinkTimeCodeGeneration>
-    </Link>
-  </ItemDefinitionGroup>
-  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
-    <ClCompile>
-      <PrecompiledHeader>NotUsing</PrecompiledHeader>
-      <PreprocessorDefinitions>_WINRT_DLL;Universal;NDEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <PrecompiledHeaderFile>
-      </PrecompiledHeaderFile>
-      <PrecompiledHeaderOutputFile>
-      </PrecompiledHeaderOutputFile>
-      <AdditionalUsingDirectories>$(WindowsSDK_WindowsMetadata);$(AdditionalUsingDirectories)</AdditionalUsingDirectories>
-      <AdditionalOptions>/bigobj %(AdditionalOptions)</AdditionalOptions>
-      <DisableSpecificWarnings>28204</DisableSpecificWarnings>
-      <AdditionalIncludeDirectories>$(ProjectDir)Source;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-      <Optimization>MaxSpeed</Optimization>
-      <IntrinsicFunctions>true</IntrinsicFunctions>
-      <BasicRuntimeChecks>Default</BasicRuntimeChecks>
-      <FunctionLevelLinking>false</FunctionLevelLinking>
-      <MultiProcessorCompilation>false</MultiProcessorCompilation>
-      <GenerateXMLDocumentationFiles>false</GenerateXMLDocumentationFiles>
-      <DebugInformationFormat>None</DebugInformationFormat>
-    </ClCompile>
-    <Link>
-      <SubSystem>Console</SubSystem>
-      <IgnoreAllDefaultLibraries>false</IgnoreAllDefaultLibraries>
-      <AdditionalDependencies>shcore.lib;runtimeobject.lib;mfuuid.lib;%(AdditionalDependencies)</AdditionalDependencies>
-      <AdditionalLibraryDirectories>%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
-      <GenerateDebugInformation>false</GenerateDebugInformation>
-      <OptimizeReferences>true</OptimizeReferences>
-      <EnableCOMDATFolding>true</EnableCOMDATFolding>
-      <ImageHasSafeExceptionHandlers>false</ImageHasSafeExceptionHandlers>
-      <LinkTimeCodeGeneration>Default</LinkTimeCodeGeneration>
-    </Link>
-  </ItemDefinitionGroup>
+  <ItemGroup>
+    <Midl Include="FFmpegInteropByteStreamHandler.idl" />
+    <Midl Include="FFmpegInteropMSS.idl" />
+    <Midl Include="FFmpegInteropLogging.idl" />
+  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
-    <Import Project="..\packages\Microsoft.NETCore.UniversalWindowsPlatform.6.2.8\build\Microsoft.NetCore.UniversalWindowsPlatform.targets" Condition="Exists('..\packages\Microsoft.NETCore.UniversalWindowsPlatform.6.2.8\build\Microsoft.NetCore.UniversalWindowsPlatform.targets')" />
-    <Import Project="..\packages\FFmpeg.UWP.4.1.3\build\native\FFmpeg.UWP.targets" Condition="Exists('..\packages\FFmpeg.UWP.4.1.3\build\native\FFmpeg.UWP.targets')" />
+    <Import Project="$(SolutionDir)packages\Microsoft.Windows.CppWinRT.2.0.250303.1\build\native\Microsoft.Windows.CppWinRT.targets" Condition="Exists('$(SolutionDir)packages\Microsoft.Windows.CppWinRT.2.0.250303.1\build\native\Microsoft.Windows.CppWinRT.targets')" />
+    <Import Project="$(SolutionDir)packages\Microsoft.Windows.ImplementationLibrary.1.0.250325.1\build\native\Microsoft.Windows.ImplementationLibrary.targets" Condition="Exists('$(SolutionDir)packages\Microsoft.Windows.ImplementationLibrary.1.0.250325.1\build\native\Microsoft.Windows.ImplementationLibrary.targets')" />
+    <Import Project="..\packages\FFmpeg.UWP.8.0.0\build\native\FFmpeg.UWP.targets" Condition="Exists('..\packages\FFmpeg.UWP.8.0.0\build\native\FFmpeg.UWP.targets')" />
   </ImportGroup>
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
     <PropertyGroup>
       <ErrorText>This project references NuGet package(s) that are missing on this computer. Use NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
     </PropertyGroup>
-    <Error Condition="!Exists('..\packages\Microsoft.NETCore.UniversalWindowsPlatform.6.2.8\build\Microsoft.NETCore.UniversalWindowsPlatform.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Microsoft.NETCore.UniversalWindowsPlatform.6.2.8\build\Microsoft.NETCore.UniversalWindowsPlatform.props'))" />
-    <Error Condition="!Exists('..\packages\Microsoft.NETCore.UniversalWindowsPlatform.6.2.8\build\Microsoft.NetCore.UniversalWindowsPlatform.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Microsoft.NETCore.UniversalWindowsPlatform.6.2.8\build\Microsoft.NetCore.UniversalWindowsPlatform.targets'))" />
-    <Error Condition="!Exists('..\packages\FFmpeg.UWP.4.1.3\build\native\FFmpeg.UWP.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\FFmpeg.UWP.4.1.3\build\native\FFmpeg.UWP.targets'))" />
+    <Error Condition="!Exists('$(SolutionDir)packages\Microsoft.Windows.CppWinRT.2.0.250303.1\build\native\Microsoft.Windows.CppWinRT.props')" Text="$([System.String]::Format('$(ErrorText)', '$(SolutionDir)packages\Microsoft.Windows.CppWinRT.2.0.250303.1\build\native\Microsoft.Windows.CppWinRT.props'))" />
+    <Error Condition="!Exists('$(SolutionDir)packages\Microsoft.Windows.CppWinRT.2.0.250303.1\build\native\Microsoft.Windows.CppWinRT.targets')" Text="$([System.String]::Format('$(ErrorText)', '$(SolutionDir)packages\Microsoft.Windows.CppWinRT.2.0.250303.1\build\native\Microsoft.Windows.CppWinRT.targets'))" />
+    <Error Condition="!Exists('$(SolutionDir)packages\Microsoft.Windows.ImplementationLibrary.1.0.250325.1\build\native\Microsoft.Windows.ImplementationLibrary.targets')" Text="$([System.String]::Format('$(ErrorText)', '$(SolutionDir)packages\Microsoft.Windows.ImplementationLibrary.1.0.250325.1\build\native\Microsoft.Windows.ImplementationLibrary.targets'))" />
+    <Error Condition="!Exists('..\packages\FFmpeg.UWP.8.0.0\build\native\FFmpeg.UWP.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\FFmpeg.UWP.8.0.0\build\native\FFmpeg.UWP.targets'))" />
   </Target>
 </Project>

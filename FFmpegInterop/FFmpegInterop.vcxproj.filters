@@ -5,52 +5,73 @@
       <UniqueIdentifier>65247ed4-8bf5-4cae-b754-fa343845bdc7</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tga;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
-    <Filter Include="Source">
-      <UniqueIdentifier>{b7849935-0342-4c1c-b0e8-3139fc283c06}</UniqueIdentifier>
-    </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="$(MSBuildThisFileDirectory)Source\CompressedSampleProvider.cpp">
-      <Filter>Source</Filter>
-    </ClCompile>
-    <ClCompile Include="$(MSBuildThisFileDirectory)Source\FFmpegInteropLogging.cpp">
-      <Filter>Source</Filter>
-    </ClCompile>
-    <ClCompile Include="$(MSBuildThisFileDirectory)Source\FFmpegInteropMSS.cpp">
-      <Filter>Source</Filter>
-    </ClCompile>
-    <ClCompile Include="$(MSBuildThisFileDirectory)Source\FFmpegReader.cpp">
-      <Filter>Source</Filter>
-    </ClCompile>
-    <ClCompile Include="$(MSBuildThisFileDirectory)Source\FrameGrabber.cpp">
-      <Filter>Source</Filter>
-    </ClCompile>
-    <ClCompile Include="$(MSBuildThisFileDirectory)Source\H264AVCSampleProvider.cpp">
-      <Filter>Source</Filter>
-    </ClCompile>
-    <ClCompile Include="$(MSBuildThisFileDirectory)Source\HEVCSampleProvider.cpp">
-      <Filter>Source</Filter>
-    </ClCompile>
-    <ClCompile Include="$(MSBuildThisFileDirectory)Source\MediaSampleProvider.cpp">
-      <Filter>Source</Filter>
-    </ClCompile>
-    <ClCompile Include="$(MSBuildThisFileDirectory)Source\NALPacketSampleProvider.cpp">
-      <Filter>Source</Filter>
-    </ClCompile>
-    <ClCompile Include="$(MSBuildThisFileDirectory)Source\NativeBufferFactory.cpp">
-      <Filter>Source</Filter>
-    </ClCompile>
-    <ClCompile Include="$(MSBuildThisFileDirectory)Source\UncompressedAudioSampleProvider.cpp">
-      <Filter>Source</Filter>
-    </ClCompile>
-    <ClCompile Include="$(MSBuildThisFileDirectory)Source\UncompressedSampleProvider.cpp">
-      <Filter>Source</Filter>
-    </ClCompile>
-    <ClCompile Include="$(MSBuildThisFileDirectory)Source\UncompressedVideoSampleProvider.cpp">
-      <Filter>Source</Filter>
-    </ClCompile>
+    <ClCompile Include="pch.cpp" />
+    <ClCompile Include="FFmpegInteropMSS.cpp" />
+    <ClCompile Include="UncompressedAudioSampleProvider.cpp" />
+    <ClCompile Include="UncompressedSampleProvider.cpp" />
+    <ClCompile Include="UncompressedVideoSampleProvider.cpp" />
+    <ClCompile Include="FFmpegInteropLogging.cpp" />
+    <ClCompile Include="Tracing.cpp" />
+    <ClCompile Include="dllmain.cpp" />
+    <ClCompile Include="SubtitleSampleProvider.cpp" />
+    <ClCompile Include="$(GeneratedFilesDir)module.g.cpp" />
+    <ClCompile Include="SampleProvider.cpp" />
+    <ClCompile Include="StreamFactory.cpp" />
+    <ClCompile Include="FFmpegInteropBuffer.cpp" />
+    <ClCompile Include="AV1SampleProvider.cpp" />
+    <ClCompile Include="H264SampleProvider.cpp" />
+    <ClCompile Include="FFmpegInteropMSSConfig.cpp" />
+    <ClCompile Include="Reader.cpp" />
+    <ClCompile Include="Metadata.cpp" />
+    <ClCompile Include="FLACSampleProvider.cpp" />
+    <ClCompile Include="MPEGSampleProvider.cpp" />
+    <ClCompile Include="NALUSampleProvider.cpp" />
+    <ClCompile Include="HEVCSampleProvider.cpp" />
+    <ClCompile Include="ACMSampleProvider.cpp" />
+    <ClCompile Include="Utility.cpp" />
+    <ClCompile Include="VFWSampleProvider.cpp" />
+    <ClCompile Include="BitstreamReader.cpp" />
+    <ClCompile Include="LogEventArgs.cpp" />
+    <ClCompile Include="FFmpegInteropByteStreamHandler.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="pch.h" />
+    <ClInclude Include="FFmpegInteropMSS.h" />
+    <ClInclude Include="UncompressedAudioSampleProvider.h" />
+    <ClInclude Include="UncompressedSampleProvider.h" />
+    <ClInclude Include="UncompressedVideoSampleProvider.h" />
+    <ClInclude Include="FFmpegInteropLogging.h" />
+    <ClInclude Include="Tracing.h" />
+    <ClInclude Include="Utility.h" />
+    <ClInclude Include="SubtitleSampleProvider.h" />
+    <ClInclude Include="SampleProvider.h" />
+    <ClInclude Include="StreamFactory.h" />
+    <ClInclude Include="FFmpegInteropBuffer.h" />
+    <ClInclude Include="AV1SampleProvider.h" />
+    <ClInclude Include="H264SampleProvider.h" />
+    <ClInclude Include="FFmpegInteropMSSConfig.h" />
+    <ClInclude Include="Reader.h" />
+    <ClInclude Include="Metadata.h" />
+    <ClInclude Include="FLACSampleProvider.h" />
+    <ClInclude Include="MPEGSampleProvider.h" />
+    <ClInclude Include="NALUSampleProvider.h" />
+    <ClInclude Include="HEVCSampleProvider.h" />
+    <ClInclude Include="ACMSampleProvider.h" />
+    <ClInclude Include="VFWSampleProvider.h" />
+    <ClInclude Include="BitstreamReader.h" />
+    <ClInclude Include="LogEventArgs.h" />
+    <ClInclude Include="FFmpegInteropByteStreamHandler.h" />
+    <ClInclude Include="MFAttributesImpl.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="FFmpegInterop.def" />
     <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Midl Include="FFmpegInteropMSS.idl" />
+    <Midl Include="FFmpegInteropLogging.idl" />
+    <Midl Include="FFmpegInteropByteStreamHandler.idl" />
   </ItemGroup>
 </Project>

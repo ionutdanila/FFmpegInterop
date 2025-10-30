@@ -18,12 +18,86 @@
 
 #pragma once
 
-#include <collection.h>
-#include <ppltasks.h>
-
-// Disable debug string output on non-debug build
-#if !_DEBUG
-#define DebugMessage(x)
-#else
-#define DebugMessage(x) OutputDebugString(x)
+#ifndef NOMINMAX
+#define NOMINMAX // Don't define min()/max() macros in Windows.h
 #endif
+
+// WIL
+#include <wil/cppwinrt.h>
+#include <wil/result.h>
+#include <wil/Tracelogging.h>
+
+// WinRT
+#include <winrt/base.h>
+#include <winrt/Windows.Foundation.h>
+#include <winrt/Windows.Foundation.Collections.h>
+#include <winrt/Windows.Foundation.Metadata.h>
+#include <winrt/Windows.Storage.Streams.h>
+#include <winrt/Windows.Media.Core.h>
+#include <winrt/Windows.Media.MediaProperties.h>
+#include <robuffer.h>
+
+// Windows
+#include <Windows.h>
+#include <shcore.h>
+#include <propkey.h>
+#include <propvarutil.h>
+
+// MF
+#include <mfidl.h>
+#include <mfapi.h>
+#include <mferror.h>
+#include <codecapi.h>
+#include <wmcodecdsp.h>
+#include <amvideo.h>
+
+#if !WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_DESKTOP)
+DEFINE_GUID(MEDIASUBTYPE_DOLBY_TRUEHD, 0xeb27cec4, 0x163e, 0x4ca3, 0x8b, 0x74, 0x8e, 0x25, 0xf9, 0x1b, 0x51, 0x7e);
+DEFINE_GUID(MF_PROPERTY_HANDLER_SERVICE, 0xa3face02, 0x32b8, 0x41dd, 0x90, 0xe7, 0x5f, 0xef, 0x7c, 0x89, 0x91, 0xb5);
+#endif // !WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_DESKTOP)
+
+#if !WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_DESKTOP | WINAPI_PARTITION_GAMES)
+DEFINE_GUID(MF_MT_CUSTOM_VIDEO_PRIMARIES, 0x47537213, 0x8cfb, 0x4722, 0xaa, 0x34, 0xfb, 0xc9, 0xe2, 0x4d, 0x77, 0xb8);
+
+typedef struct _MT_CUSTOM_VIDEO_PRIMARIES {
+    float fRx;
+    float fRy;
+    float fGx;
+    float fGy;
+    float fBx;
+    float fBy;
+    float fWx;
+    float fWy;
+} MT_CUSTOM_VIDEO_PRIMARIES;
+#endif // !WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_DESKTOP | WINAPI_PARTITION_GAMES)
+
+// FFmpeg
+#pragma warning(disable:4244)
+extern "C"
+{
+#include <libavcodec/avcodec.h>
+#include <libavformat/avformat.h>
+#include <libavutil/log.h>
+#include <libavutil/imgutils.h>
+#include <libavutil/mastering_display_metadata.h>
+#include <libswresample/swresample.h>
+#include <libswscale/swscale.h>
+}
+#pragma warning(default:4244)
+
+// STL
+#include <algorithm>
+#include <memory>
+#include <functional>
+#include <deque>
+#include <map>
+#include <mutex>
+#include <tuple>
+#include <limits>
+#include <cstdlib>
+
+// FFmpegInterop
+#include "Tracing.h"
+#include "Utility.h"
+#include "FFmpegInteropBuffer.h"
+#include "MFAttributesImpl.h"
