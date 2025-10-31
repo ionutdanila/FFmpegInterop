@@ -2,38 +2,41 @@
 <package xmlns="http://schemas.microsoft.com/packaging/2013/05/nuspec.xsd">
   <metadata minClientVersion="3.3">
     <id>FFmpegInterop.Universal</id>
-    <version>1.1.12</version>
+    <version>2.0.0</version>
     <title>FFmpegInterop UWP Library</title>
     <projectUrl>https://github.com/ionutdanila/FFmpegInterop</projectUrl>
     <authors>Ionut Danila</authors>
 	<language>en-US</language>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
-    <description>FFmpegInterop Library (x86, x64, ARM, ARM64) for UWP (Universal Windows Platform)</description>
+    <description>FFmpegInterop Library (x86, x64, ARM64) for UWP (Universal Windows Platform)</description>
 	<copyright>Ionut Danila</copyright>
-    <tags>ffmpeginterop, ffmpeg, x86, x64, arm, arm64, uwp, ffmpeg-libraries</tags>
-	<iconUrl>https://www.ffmpeg.org/favicon.ico</iconUrl>
+    <tags>ffmpeginterop, ffmpeg, x86, x64, arm64, uwp, ffmpeg-libraries</tags>
+	<icon>docs\icon.png</icon>
 	<license type="expression">MIT</license>
 	<dependencies>
-	  <dependency id="FFmpeg.UWP" version="4.1.3" />
+	  <dependency id="FFmpeg.UWP" version="8.0.0" />
 	</dependencies>
+    <readme>docs\README.md</readme>
+    <repository type="git" url="https://github.com/ionutdanila/FFmpegInterop" branch="master" commit="0ebfd3773d6a19aa2679b810d19a66873c55dfb4" />
+    <releaseNotes>Update FFmpeg.UWP to 8.0 "Huffman"</releaseNotes>
   </metadata>
   
   <files>
     <file src="uap10.0\*.props" target="build\uap10.0" />
   
-    <file src="..\FFmpegInterop\bin\Release\x86\FFmpegInterop.winmd" target="lib\uap10.0" />
+    <file src="..\Release\x86\FFmpegInterop.winmd" target="lib\uap10.0" />
 	
-	<file src="..\FFmpegInterop\bin\Release\x64\FFmpegInterop.dll" target="runtimes\win10-x64-aot\native" />
-	<file src="..\FFmpegInterop\bin\Release\x64\FFmpegInterop.pri" target="runtimes\win10-x64-aot\native" />
+	<file src="..\Release\x64\FFmpegInterop.dll" target="runtimes\win10-x64-aot\native" />
+	<file src="..\Release\x64\FFmpegInterop.pri" target="runtimes\win10-x64-aot\native" />
 	
-	<file src="..\FFmpegInterop\bin\Release\x86\FFmpegInterop.dll" target="runtimes\win10-x86-aot\native" />
-	<file src="..\FFmpegInterop\bin\Release\x86\FFmpegInterop.pri" target="runtimes\win10-x86-aot\native" />
+	<file src="..\Release\x86\FFmpegInterop.dll" target="runtimes\win10-x86-aot\native" />
+	<file src="..\Release\x86\FFmpegInterop.pri" target="runtimes\win10-x86-aot\native" />
 
-	<file src="..\FFmpegInterop\bin\Release\arm64\FFmpegInterop.dll" target="runtimes\win10-arm64-aot\native" />
-	<file src="..\FFmpegInterop\bin\Release\arm64\FFmpegInterop.pri" target="runtimes\win10-arm64-aot\native" />
+	<file src="..\Release\arm64\FFmpegInterop.dll" target="runtimes\win10-arm64-aot\native" />
+	<file src="..\Release\arm64\FFmpegInterop.pri" target="runtimes\win10-arm64-aot\native" />
 
-	<file src="..\FFmpegInterop\bin\Release\arm\FFmpegInterop.dll" target="runtimes\win10-arm-aot\native" />
-	<file src="..\FFmpegInterop\bin\Release\arm\FFmpegInterop.pri" target="runtimes\win10-arm-aot\native" />
-  </files>
+	<file src="README.md" target="docs\" />
+    <file src="icon.png" target="docs\" />
+</files>
   
 </package>
